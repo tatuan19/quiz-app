@@ -5,13 +5,22 @@ function useQuestionStorage(data, total) {
     const [questions, setQuestions] = useState([])
 
     useEffect(() => {
+        getRandom(data, total)
+        // console.log(questions)
+    }, [])
+    
+    const getRandom = (data, total) => {
+        var arr = []
+        while (arr.length < total) {
+            var rand = Math.floor(Math.random() * data.length);
+            
+            if (arr.indexOf(data[rand]) === -1) {
+                arr.push({ ...data[rand], "id": rand });
+            }
 
-        while (questions.length < total) {
-            var r = Math.floor(Math.random() * data.length) + 1;
-            if (questions.indexOf(r) === -1) questions.push({...data[r],"id":r});
         }
-        console.log(questions)
-    });
+        setQuestions(arr)
+    }
 
     const clearQuestions = () => {
         setQuestions([]);
@@ -25,7 +34,7 @@ function useQuestionStorage(data, total) {
         return false;
     }
 
-    return [questions, checkAnswer];
+    return [questions, clearQuestions, checkAnswer];
 
 }
 
