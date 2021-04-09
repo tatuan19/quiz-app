@@ -15,7 +15,7 @@ function useQuestionStorage(data, total) {
             var rand = Math.floor(Math.random() * data.length);
             
             if (arr.indexOf(data[rand]) === -1) {
-                arr.push({ ...data[rand], "id": rand });
+                arr.push(data[rand]);
             }
 
         }
