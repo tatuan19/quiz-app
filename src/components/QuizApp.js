@@ -52,9 +52,7 @@ function QuizApp() {
         // TODO: Chien
 
     }
-
-    console.log(step + " " + questions + " " + totalQuestions + " " + score)
-
+    
     // Render trang Results hoặc trang chủ Quiz (~ bình thường thường làm ở App.js)
     if (step >= totalQuestions + 1) {
         return (
