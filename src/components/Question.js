@@ -9,26 +9,29 @@ const Question = ({ question, answers, handleAnswerClick, handleEnterPress }) =>
         {question}
       </h2>
       <ul className="question-answers" tabIndex="-1">
-        {answers.map((answer, index) => {
+       {/* Phai comment do dinh bug */}
+       {/* TODO: Thuc */}
+       {/* Loi do ko answer => xem lai nguon kiem answer tu dau ra de fix bug */}
+        {/* {answers.map((answer, index) => {
           return (
             <Answer
-              key={JSON.stringify(answer.props.children)}
+              // key={JSON.stringify(answer.props.children)}
               answer={answer}
               handleAnswerClick={handleAnswerClick(index)}
               handleEnterPress={handleEnterPress(index)}
             />
           );
-        })}
+        })} */}
       </ul>
     </li>
   );
 }
 
-Question.propTypes = {
-  question: PropTypes.element.isRequired,
-  answers: PropTypes.array.isRequired,
-  handleAnswerClick: PropTypes.func.isRequired,
-  handleEnterPress: PropTypes.func.isRequired
-};
+// Question.propTypes = {
+//   question: PropTypes.element.isRequired,
+//   answers: PropTypes.array.isRequired,
+//   handleAnswerClick: PropTypes.func.isRequired,
+//   handleEnterPress: PropTypes.func.isRequired
+// };
 
 export default Question;

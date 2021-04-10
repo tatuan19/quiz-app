@@ -1,13 +1,14 @@
-import { React, useState, useEffect } from 'react';
+import { React, useState } from 'react';
 import QUESTION_DATA from '../data/quiz-data.json';
 import useQuestionStorage from '../hooks/useQuestionStorage';
 import Quiz from './Quiz';
+import Results from './Results'
 
 function QuizApp() {
     const [totalQuestions, setTotalQuestions] = useState(10);
     const [questions, checkAnswer] = useQuestionStorage(QUESTION_DATA, totalQuestions);
-    const [userAnswers, setUserAnswer] = useState(questions.map(()=> {
-        return {tries: 0}
+    const [userAnswers, setUserAnswer] = useState(questions.map(() => {
+        return { tries: 0 }
     }));
     const [step, setStep] = useState(1);
     const [score, setScore] = useState(0);
@@ -15,34 +16,55 @@ function QuizApp() {
     // const [,]
 
     const handleAnswerClick = (index) => (e) => {
+        //TODO: Lam
+
     };
 
     const handleEnterPress = (index) => (e) => {
+        // TODO: Lam
+
     };
 
-    const displayedQuestions = questions.map(question => (
-        <div key={question.id}>
-            <h3> {question.question} </h3>
-            <input type="radio" value="A" name="answer" /><label>A. {question.A} </label>
-            <input type="radio" value="B" name="answer" /><label>B. {question.B} </label>
-            <input type="radio" value="C" name="answer" /><label>C. {question.C} </label>
-            <input type="radio" value="D" name="answer" /><label>D. {question.D} </label>
-        </div>
+    const showNotice = (tries) => {
+        // TODO: Unknown
 
-    ))
+    }
 
-    return (
-        <div className="container">
-            <Quiz
-                step={step}
-                questions={questions}
-                totalQuestions={totalQuestions}
+    const nextStep = () => {
+        // TODO: Unknown
+
+    }
+
+    const updateScore = (tries, score) => {
+        // TODO: Unknown
+
+    }
+
+    const restartQuiz = () => {
+        // TODO: Chien
+
+    }
+
+    console.log(step + " " + questions + " " + totalQuestions + " " + score)
+
+    // Render trang Results hoặc trang chủ Quiz (~ bình thường thường làm ở App.js)
+    if (step >= totalQuestions + 1) {
+        return (
+            <Results
                 score={score}
-                handleAnswerClick={handleAnswerClick}
-                handleEnterPress={handleEnterPress}
+                restartQuiz={restartQuiz}
+                userAnswers={userAnswers}
             />
-            {displayedQuestions}
-        </div>
+        );
+    } else return (
+        <Quiz
+            step={step}
+            questions={questions}
+            totalQuestions={totalQuestions}
+            score={score}
+            handleAnswerClick={handleAnswerClick}
+            handleEnterPress={handleEnterPress}
+        />
     );
 }
 
