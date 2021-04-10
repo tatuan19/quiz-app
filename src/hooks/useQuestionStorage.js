@@ -7,7 +7,7 @@ function useQuestionStorage(data, total) {
     useEffect(() => {
         getRandom(data, total)
         // console.log(questions)
-    }, [])
+    }, []);
     
     const getRandom = (data, total) => {
         var arr = []
