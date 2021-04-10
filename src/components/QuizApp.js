@@ -6,7 +6,7 @@ import Results from './Results'
 
 function QuizApp() {
     const [totalQuestions, setTotalQuestions] = useState(10);
-    const [questions, checkAnswer] = useQuestionStorage(QUESTION_DATA, totalQuestions);
+    const [questions, setQuestions, checkAnswer] = useQuestionStorage(QUESTION_DATA, totalQuestions);
     const [userAnswers, setUserAnswer] = useState(questions.map(() => {
         return { tries: 0 }
     }));
@@ -31,13 +31,21 @@ function QuizApp() {
     }
 
     const nextStep = () => {
-        // TODO: Unknown
+        const currentStep = step - 1;
+        const tries = userAnswers[currentStep].tries;
 
+        setStep(step + 1);
+        setScore(updateScore(tries, score));
+        setQuestions(questions.slice(1));
     }
 
     const updateScore = (tries, score) => {
-        // TODO: Unknown
-
+        switch (tries) {
+            case 1: return score + 10;
+            case 2: return score + 5;
+            case 3: return score + 2;
+            default: return score + 1;
+        }
     }
 
     const restartQuiz = () => {

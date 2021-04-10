@@ -34,7 +34,7 @@ function useQuestionStorage(data, total) {
         return false;
     }
 
-    return [questions, clearQuestions, checkAnswer];
+    return [questions, setQuestions, clearQuestions, checkAnswer];
 
 }
 
