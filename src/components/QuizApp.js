@@ -3,6 +3,7 @@ import QUESTION_DATA from '../data/quiz-data.json';
 import useQuestionStorage from '../hooks/useQuestionStorage';
 import Quiz from './Quiz';
 import Results from './Results'
+import shuffleQuestions from '../helpers/shuffleQuestions';
 
 function QuizApp() {
     const [totalQuestions, setTotalQuestions] = useState(10);
@@ -50,7 +51,15 @@ function QuizApp() {
 
     const restartQuiz = () => {
         // TODO: Chien
-
+        const QUESTIONS = shuffleQuestions(QUESTION_DATA).slice(0, totalQuestions);
+        setQuestions(QUESTIONS);
+        setUserAnswer(QUESTIONS.map(() => {
+            return {
+              tries: 0
+            }
+        }));
+        setStep(1);
+        setScore(0);
     }
     
     // Render trang Results hoặc trang chủ Quiz (~ bình thường thường làm ở App.js)
