@@ -9,7 +9,7 @@ function QuizApp() {
     const [totalQuestions, setTotalQuestions] = useState(10);
     const [questions, setQuestions, checkAnswer] = useQuestionStorage(QUESTION_DATA, totalQuestions);
     const [userAnswers, setUserAnswer] = useState(Array(totalQuestions).fill({tries: 0}));
-    const [step, setStep] = useState(20);
+    const [step, setStep] = useState(1);
     const [score, setScore] = useState(0);
     // TODO: co the su dung cho thong bao 
     // const [,]
