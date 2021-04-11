@@ -35,7 +35,7 @@ const Quiz = ({ step, questions, totalQuestions, score, handleAnswerClick, handl
                 </div>
             </nav>
             {/* Test thử cho một câu hỏi */}
-            <div className="box">
+            {/* <div className="box">
                 <p style={{ fontSize: "1.5rem" }}>
                     <span style={{ fontWeight: "bold", marginRight: "5px"}}>Q{step}:</span> Which of these companies is not an online stock brokerage?
                 </p>
@@ -83,9 +83,10 @@ const Quiz = ({ step, questions, totalQuestions, score, handleAnswerClick, handl
                 <div className="column is-11">
                     <div className="box">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
                 </div>
-            </div>
+            </div> */}
             <div className="questions">
                 <QuestionList
+                    step={step}
                     questions={questions}
                     handleAnswerClick={handleAnswerClick}
                     handleEnterPress={handleEnterPress}

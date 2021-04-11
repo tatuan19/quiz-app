@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React, useEffect, useState } from 'react';
 import QUESTION_DATA from '../data/quiz-data.json';
 import useQuestionStorage from '../hooks/useQuestionStorage';
 import Quiz from './Quiz';
@@ -7,16 +7,26 @@ import shuffleQuestions from '../helpers/shuffleQuestions';
 
 function QuizApp() {
     const [totalQuestions, setTotalQuestions] = useState(10);
-    const [questions, setQuestions, checkAnswer] = useQuestionStorage(QUESTION_DATA, totalQuestions);
-    const [userAnswers, setUserAnswer] = useState(Array(totalQuestions).fill({tries: 0}));
-    const [step, setStep] = useState(1);
+    const [questions, setQuestions, checkAnswer, getRandom] = useQuestionStorage(QUESTION_DATA, totalQuestions);
+    const [userAnswers, setUserAnswer] = useState(Array(totalQuestions).fill({ tries: 0 }));
+    const [step, setStep] = useState(11);
     const [score, setScore] = useState(0);
     // TODO: co the su dung cho thong bao 
     // const [,]
 
-    const handleAnswerClick = (index) => (e) => {
+    const handleAnswerClick = (questNum) => (ansNum) => (e) => {
         //TODO: Lam
-
+        // console.log(questions[questNum].answer)
+        // console.log(ansNum)
+        const isCorrect = checkAnswer(questNum, ansNum)
+        if (isCorrect) {
+            //cập nhật các giá trị nếu câu trả lời đúng
+            console.log("true")
+        }
+        else {
+            //Cập nhật các giá trị nếu câu trả lời sai
+            console.log("false")
+        }
     };
 
     const handleEnterPress = (index) => (e) => {
@@ -53,13 +63,13 @@ function QuizApp() {
         setQuestions(QUESTIONS);
         setUserAnswer(QUESTIONS.map(() => {
             return {
-              tries: 0
+                tries: 0
             }
         }));
         setStep(1);
         setScore(0);
     }
-    
+
     // Render trang Results hoặc trang chủ Quiz (~ bình thường thường làm ở App.js)
     if (step >= totalQuestions + 1) {
         return (
@@ -70,14 +80,17 @@ function QuizApp() {
             />
         );
     } else return (
-        <Quiz
-            step={step}
-            questions={questions}
-            totalQuestions={totalQuestions}
-            score={score}
-            handleAnswerClick={handleAnswerClick}
-            handleEnterPress={handleEnterPress}
-        />
+        <>
+            <button className="button is-fullwidth" onClick={(e) => getRandom(QUESTION_DATA,totalQuestions)}>Reset question</button>
+            <Quiz
+                step={step}
+                questions={questions}
+                totalQuestions={totalQuestions}
+                score={score}
+                handleAnswerClick={handleAnswerClick}
+                handleEnterPress={handleEnterPress}
+            />
+        </>
     );
 }
 
