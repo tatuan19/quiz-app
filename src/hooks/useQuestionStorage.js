@@ -8,12 +8,12 @@ function useQuestionStorage(data, total) {
         getRandom(data, total)
         // console.log(questions)
     }, []);
-    
+
     const getRandom = (data, total) => {
         var arr = []
         while (arr.length < total) {
             var rand = Math.floor(Math.random() * data.length);
-            
+
             if (arr.indexOf(data[rand]) === -1) {
                 arr.push(data[rand]);
             }
@@ -27,14 +27,14 @@ function useQuestionStorage(data, total) {
 
     };
 
-    const checkAnswer = (index, answer) => {
-        if (questions[index].answer === answer) {
+    const checkAnswer = (questNum, ansNum) => {
+        if ((questions[questNum].answer === "A" && ansNum === 0) || (questions[questNum].answer === "B" && ansNum === 1) || (questions[questNum].answer === "C" && ansNum === 2) || (questions[questNum].answer === "D" && ansNum === 3)) {
             return true;
         }
         return false;
     }
 
-    return [questions, setQuestions, clearQuestions, checkAnswer];
+    return [questions, setQuestions, checkAnswer, getRandom, clearQuestions];
 
 }
 
