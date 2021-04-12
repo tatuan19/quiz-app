@@ -21,11 +21,20 @@ function QuizApp() {
         const isCorrect = checkAnswer(questNum, ansNum)
         if (isCorrect) {
             //cập nhật các giá trị nếu câu trả lời đúng
-            console.log("true")
+            if (e.target.classList.contains('has-background-danger')) e.target.classList.remove('has-background-danger');
+            e.target.classList.add('has-background-primary');
+           
+            console.log("true");
+            
         }
         else {
             //Cập nhật các giá trị nếu câu trả lời sai
+            
+            e.target.classList.add('has-background-danger');
+            // e.target.style.pointerEvents = 'none';
+         
             console.log("false")
+        
         }
     };
 
@@ -81,7 +90,19 @@ function QuizApp() {
         );
     } else return (
         <>
-            <button className="button is-fullwidth" onClick={(e) => getRandom(QUESTION_DATA,totalQuestions)}>Reset question</button>
+            <button className="button is-fullwidth" 
+            onClick={(e) => { 
+                getRandom(QUESTION_DATA, totalQuestions);
+                var changeStyleAnswer = document.getElementsByClassName("box");
+                for(let i =0;i<changeStyleAnswer.length;i++){
+                    // console.log(changeStyleAnswer[i].classList.contains('has-background-primary') + '-----');
+                    // console.log(changeStyleAnswer[i].classList.contains('has-background-danger') + '-----aa');
+                    if (changeStyleAnswer[i].classList.contains('has-background-danger')) changeStyleAnswer[i].classList.remove('has-background-danger');
+                    if (changeStyleAnswer[i].classList.contains('has-background-primary')) changeStyleAnswer[i].classList.remove('has-background-primary');
+                    
+                }
+            }}
+            >Reset question</button>
             <Quiz
                 step={step}
                 questions={questions}
