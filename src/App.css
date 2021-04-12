@@ -1,10 +1,9 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.2/css/bulma.min.css');
 
 body {
-  height: 100vh;
-  /* background-color: hsl(0, 0%, 98%); */
+  background-color: hsl(0, 0%, 98%);
 }
 
 .container {
-  padding: 5%;
+  padding: 0 5%;
 }

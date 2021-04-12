@@ -1,7 +1,7 @@
 import React from 'react';
 import tally from '../helpers/tally';
 
-const Results = ({ userAnswers, score, restartQuiz }) => {
+function Results({ userAnswers, score, restartQuiz }) {
   const triesTotal = tally(userAnswers);
   const oneTry = triesTotal[1] && <div><strong>{triesTotal[1]}</strong> on the first try.</div>;
   const twoTries = triesTotal[2] && <div><strong>{triesTotal[2]}</strong> on the second try.</div>;
