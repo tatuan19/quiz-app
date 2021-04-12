@@ -57,6 +57,7 @@ function QuizApp() {
             setUserAnswer(temp);
 
             console.log("false")
+        
         }
     };
 
@@ -139,7 +140,19 @@ function QuizApp() {
         );
     } else return (
         <>
-            <Notification state={noticeState}></Notification>
+            <button className="button is-fullwidth" 
+            onClick={(e) => { 
+                getRandom(QUESTION_DATA, totalQuestions);
+                var changeStyleAnswer = document.getElementsByClassName("box");
+                for(let i =0;i<changeStyleAnswer.length;i++){
+                    // console.log(changeStyleAnswer[i].classList.contains('has-background-primary') + '-----');
+                    // console.log(changeStyleAnswer[i].classList.contains('has-background-danger') + '-----aa');
+                    if (changeStyleAnswer[i].classList.contains('has-background-danger')) changeStyleAnswer[i].classList.remove('has-background-danger');
+                    if (changeStyleAnswer[i].classList.contains('has-background-primary')) changeStyleAnswer[i].classList.remove('has-background-primary');
+                    
+                }
+            }}
+            >Reset question</button>
             <Quiz
                 step={step}
                 questions={questions}
