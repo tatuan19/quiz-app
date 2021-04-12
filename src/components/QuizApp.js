@@ -153,6 +153,7 @@ function QuizApp() {
                 }
             }}
             >Reset question</button> */}
+            <Notification state={noticeState}></Notification>
             <Quiz
                 step={step}
                 questions={questions}
