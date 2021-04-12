@@ -2,7 +2,8 @@ import { React, useEffect, useState } from 'react';
 import QUESTION_DATA from '../data/quiz-data.json';
 import useQuestionStorage from '../hooks/useQuestionStorage';
 import Quiz from './Quiz';
-import Results from './Results'
+import Results from './Results';
+import Notification from './Notification'
 import shuffleQuestions from '../helpers/shuffleQuestions';
 
 function QuizApp() {
@@ -11,8 +12,11 @@ function QuizApp() {
     const [userAnswers, setUserAnswer] = useState(Array(totalQuestions).fill({ tries: 0 }));
     const [step, setStep] = useState(1);
     const [score, setScore] = useState(0);
-    // TODO: co the su dung cho thong bao 
-    // const [,]
+    const [noticeState, setNoticeState] = useState({
+        state: false,
+        praise: '',
+        points: ''
+    });
 
     const handleAnswerClick = (questNum) => (ansNum) => (e) => {
         const isCorrect = checkAnswer(questNum, ansNum)
@@ -33,10 +37,10 @@ function QuizApp() {
             setUserAnswer(temp);
 
             // show modal
-
+            setTimeout(() => showNotice(tries), 750);
             // next step
-            setTimeout(nextStep(), 5000);
-
+            setTimeout(nextStep(), 2750);
+            
             console.log("true");
         }
         else {
@@ -61,8 +65,32 @@ function QuizApp() {
     };
 
     const showNotice = (tries) => {
-        // TODO: Unknown
+        let praise;
+        let points;
 
+        switch (tries) {
+            case 0: {
+                praise = '1st Try!';
+                points = '+10';
+                break;
+            }
+            case 1: {
+                praise = '2nd Try!';
+                points = '+5';
+                break;
+            }
+            case 2: {
+                praise = 'Correct!';
+                points = '+2';
+                break;
+            }
+            default: {
+                praise = 'Correct!';
+                points = '+1';
+            }
+        }
+
+        setNoticeState({ state: true, praise: praise, points: points });
     }
 
     const nextStep = () => {
@@ -71,8 +99,7 @@ function QuizApp() {
 
         setStep(step + 1);
         setScore(updateScore(tries, score));
-
-        console.log(step);
+        setNoticeState({ state: false });
     }
 
     const updateScore = (tries, score) => {
@@ -94,6 +121,11 @@ function QuizApp() {
         }));
         setStep(1);
         setScore(0);
+        setNoticeState({
+            state: false,
+            praise: '',
+            points: ''
+        });
     }
 
     // Render trang Results hoặc trang chủ Quiz (~ bình thường thường làm ở App.js)
@@ -107,7 +139,7 @@ function QuizApp() {
         );
     } else return (
         <>
-            {/* <button className="button is-fullwidth" onClick={(e) => getRandom(QUESTION_DATA, totalQuestions)}>Reset question</button> */}
+            <Notification state={noticeState}></Notification>
             <Quiz
                 step={step}
                 questions={questions}
