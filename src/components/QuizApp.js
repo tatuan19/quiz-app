@@ -39,7 +39,7 @@ function QuizApp() {
             // show modal
             setTimeout(() => showNotice(tries), 750);
             // next step
-            setTimeout(nextStep(), 2750);
+            setTimeout(() => nextStep(), 2000);
             
             console.log("true");
         }
