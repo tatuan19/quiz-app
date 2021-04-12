@@ -1,7 +1,7 @@
 import React from 'react';
 import Answer from './Answer';
 
-const Question = ({ question, questNum, answers, handleAnswerClick, handleEnterPress }) => {
+function Question({ question, questNum, answers, handleAnswerClick, handleEnterPress }) {
   return (
     <div>
       <li className="question" style={{ margin: "3rem 0" }}>

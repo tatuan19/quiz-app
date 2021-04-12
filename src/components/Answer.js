@@ -1,7 +1,7 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 
-const Answer = ({ answer, ansNum, handleAnswerClick, handleEnterPress }) => {
+function Answer({ answer, ansNum, handleAnswerClick, handleEnterPress }) {
   return (
     <div className="columns">
       <div className="column is-1">

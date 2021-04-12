@@ -1,7 +1,6 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 
-const Navbar = ({ totalQuestions, step, score, restartQuiz }) => {
+function Navbar({ totalQuestions, step, score, restartQuiz }) {
     return (
         <nav className="level" style={{
             paddingTop: "2rem",
