@@ -17,7 +17,7 @@ function Results({ userAnswers, score, restartQuiz }) {
       {threeTries}
       {fourTries}
       <div className="results-total">Your Total Score is <strong>{score}</strong>.</div>
-      <a onClick={restartQuiz}>Restart Quiz</a>
+      <button onClick={restartQuiz}>Restart Quiz</button>
     </div>
   );
 }
