@@ -7,31 +7,57 @@ import shuffleQuestions from '../helpers/shuffleQuestions';
 
 function QuizApp() {
     const [totalQuestions, setTotalQuestions] = useState(10);
-    const [questions, setQuestions, checkAnswer, getRandom] = useQuestionStorage(QUESTION_DATA, totalQuestions);
+    const [questions, setQuestions, checkAnswer] = useQuestionStorage(QUESTION_DATA, totalQuestions);
     const [userAnswers, setUserAnswer] = useState(Array(totalQuestions).fill({ tries: 0 }));
-    const [step, setStep] = useState(11);
+    const [step, setStep] = useState(1);
     const [score, setScore] = useState(0);
     // TODO: co the su dung cho thong bao 
     // const [,]
 
     const handleAnswerClick = (questNum) => (ansNum) => (e) => {
-        //TODO: Lam
-        // console.log(questions[questNum].answer)
-        // console.log(ansNum)
         const isCorrect = checkAnswer(questNum, ansNum)
+        const currentStep = step - 1;
+        const tries = userAnswers[currentStep].tries;
+
         if (isCorrect) {
             //cập nhật các giá trị nếu câu trả lời đúng
-            console.log("true")
+            e.target.parentNode.parentNode.parentNode.style.pointerEvents = 'none';
+
+            e.target.classList.add('notification');
+            e.target.classList.add('is-info');
+
+            let temp = userAnswers;
+            temp[currentStep] = {
+                tries: tries + 1
+            };
+            setUserAnswer(temp);
+
+            // show modal
+
+            // next step
+            setTimeout(nextStep(), 5000);
+
+            console.log("true");
         }
         else {
             //Cập nhật các giá trị nếu câu trả lời sai
+            e.target.style.pointerEvents = 'none';
+
+            e.target.classList.add('notification');
+            e.target.classList.add('is-danger');
+
+            let temp = userAnswers;
+            temp[currentStep] = {
+                tries: tries + 1
+            };
+            setUserAnswer(temp);
+
             console.log("false")
         }
     };
 
     const handleEnterPress = (index) => (e) => {
-        // TODO: Lam
-
+        // TODO:
     };
 
     const showNotice = (tries) => {
@@ -45,7 +71,6 @@ function QuizApp() {
 
         setStep(step + 1);
         setScore(updateScore(tries, score));
-        setQuestions(questions.slice(1));
     }
 
     const updateScore = (tries, score) => {
@@ -58,7 +83,6 @@ function QuizApp() {
     }
 
     const restartQuiz = () => {
-        // TODO: Chien
         const QUESTIONS = shuffleQuestions(QUESTION_DATA).slice(0, totalQuestions);
         setQuestions(QUESTIONS);
         setUserAnswer(QUESTIONS.map(() => {
@@ -81,15 +105,14 @@ function QuizApp() {
         );
     } else return (
         <>
-            <button className="button is-fullwidth" onClick={(e) => getRandom(QUESTION_DATA,totalQuestions)}>Reset question</button>
-            <Quiz
-                step={step}
-                questions={questions}
-                totalQuestions={totalQuestions}
-                score={score}
-                handleAnswerClick={handleAnswerClick}
-                handleEnterPress={handleEnterPress}
-            />
+        <Quiz
+            step={step}
+            questions={questions}
+            totalQuestions={totalQuestions}
+            score={score}
+            handleAnswerClick={handleAnswerClick}
+            handleEnterPress={handleEnterPress}
+        />
         </>
     );
 }

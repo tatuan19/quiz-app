@@ -10,13 +10,12 @@ function QuestionList({ questions, handleAnswerClick, handleEnterPress }) {
       {questions.map((question, index) => {
         return (
           <Question
-            // TODO: co bug nen phai comment => Lam
             key={index}
             questNum={index}
             question={question.question}
             answers={[{ "content": question.A }, { "content": question.B }, { "content": question.C }, { "content": question.D }]}
             handleAnswerClick={handleAnswerClick(index)}
-            // handleEnterPress={handleEnterPress}
+            handleEnterPress={handleEnterPress}
             
           />
         );
@@ -24,11 +23,5 @@ function QuestionList({ questions, handleAnswerClick, handleEnterPress }) {
     </ul>
   );
 }
-
-// QuestionList.propTypes = {
-//   questions: PropTypes.array.isRequired,
-//   handleAnswerClick: PropTypes.func.isRequired,
-//   handleEnterPress: PropTypes.func.isRequired
-// };
 
 export default QuestionList;
