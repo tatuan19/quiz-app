@@ -140,7 +140,7 @@ function QuizApp() {
         );
     } else return (
         <>
-            <button className="button is-fullwidth" 
+            {/* <button className="button is-fullwidth" 
             onClick={(e) => { 
                 getRandom(QUESTION_DATA, totalQuestions);
                 var changeStyleAnswer = document.getElementsByClassName("box");
@@ -152,7 +152,7 @@ function QuizApp() {
                     
                 }
             }}
-            >Reset question</button>
+            >Reset question</button> */}
             <Quiz
                 step={step}
                 questions={questions}
