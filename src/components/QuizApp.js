@@ -10,7 +10,7 @@ function QuizApp() {
     const [totalQuestions, setTotalQuestions] = useState(10);
     const [questions, setQuestions, checkAnswer, getRandom] = useQuestionStorage(QUESTION_DATA, totalQuestions);
     const [userAnswers, setUserAnswer] = useState(Array(totalQuestions).fill({ tries: 0 }));
-    const [step, setStep] = useState(11);
+    const [step, setStep] = useState(1);
     const [score, setScore] = useState(0);
     const [noticeState, setNoticeState] = useState({
         state: false,

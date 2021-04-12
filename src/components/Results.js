@@ -10,14 +10,16 @@ function Results({ userAnswers, score, restartQuiz }) {
   
   return (
     <div className="results-container">
-      <h2>Quiz Results</h2>
+      <h2 class="title is-1 is-space">Quiz Results</h2>
       <div>You answered...</div>
-      {oneTry}
-      {twoTries}
-      {threeTries}
-      {fourTries}
+      <div class="box">
+        {oneTry}
+        {twoTries}
+        {threeTries}
+        {fourTries}
+      </div>
       <div className="results-total">Your Total Score is <strong>{score}</strong>.</div>
-      <button onClick={restartQuiz}>Restart Quiz</button>
+      <button className="button is-success" onClick={restartQuiz}>Restart Quiz</button>
     </div>
   );
 }
