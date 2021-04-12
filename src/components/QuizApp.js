@@ -147,7 +147,7 @@ function QuizApp() {
                 score={score}
                 handleAnswerClick={handleAnswerClick}
                 handleEnterPress={handleEnterPress}
-                restartQuiz={restartQuiz}
+                restartQuiz={() => {window.location.reload()}}
             />
         </>
     );
