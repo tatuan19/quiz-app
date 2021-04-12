@@ -7,7 +7,7 @@ import shuffleQuestions from '../helpers/shuffleQuestions';
 
 function QuizApp() {
     const [totalQuestions, setTotalQuestions] = useState(10);
-    const [questions, setQuestions, checkAnswer] = useQuestionStorage(QUESTION_DATA, totalQuestions);
+    const [questions, setQuestions, checkAnswer, getRandom] = useQuestionStorage(QUESTION_DATA, totalQuestions);
     const [userAnswers, setUserAnswer] = useState(Array(totalQuestions).fill({ tries: 0 }));
     const [step, setStep] = useState(1);
     const [score, setScore] = useState(0);
@@ -71,6 +71,8 @@ function QuizApp() {
 
         setStep(step + 1);
         setScore(updateScore(tries, score));
+
+        console.log(step);
     }
 
     const updateScore = (tries, score) => {
@@ -105,14 +107,16 @@ function QuizApp() {
         );
     } else return (
         <>
-        <Quiz
-            step={step}
-            questions={questions}
-            totalQuestions={totalQuestions}
-            score={score}
-            handleAnswerClick={handleAnswerClick}
-            handleEnterPress={handleEnterPress}
-        />
+            {/* <button className="button is-fullwidth" onClick={(e) => getRandom(QUESTION_DATA, totalQuestions)}>Reset question</button> */}
+            <Quiz
+                step={step}
+                questions={questions}
+                totalQuestions={totalQuestions}
+                score={score}
+                handleAnswerClick={handleAnswerClick}
+                handleEnterPress={handleEnterPress}
+                restartQuiz={restartQuiz}
+            />
         </>
     );
 }
